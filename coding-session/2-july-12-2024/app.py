@@ -17,7 +17,6 @@ from vectordb import MilvusVectorClient
 from retriever import Retriever
 
 llm_client = LLMClient("mixtral_8x7b")
-os.environ["NVIDIA_API_KEY"] = "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"
 
 # Start the analytics service (using browser.usageStats)
 streamlit_analytics.start_tracking()
@@ -321,7 +320,7 @@ if len(prompt) > 0 and submitted == True:
 
     with st.chat_message("assistant"):
         messages.append({"role": "assistant", "content": full_response})
-        st.write(full_response)
+        #st.write(full_response)
         st.experimental_rerun()
 elif len(messages) > 1:
     summary_placeholder = st.empty()

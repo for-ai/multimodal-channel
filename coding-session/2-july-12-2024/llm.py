@@ -2,11 +2,12 @@ from langchain_nvidia_ai_endpoints import ChatNVIDIA
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.messages import HumanMessage
+import streamlit as st
 
 
 class NvidiaLLM:
     def __init__(self, model_name):
-        self.llm = ChatNVIDIA(model=model_name, nvidia_api_key="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")
+        self.llm = ChatNVIDIA(model=model_name, nvidia_api_key=st.secrets["NVIDIA_API_KEY"])
 
 
 def create_llm(model_name, model_type="NVIDIA"):

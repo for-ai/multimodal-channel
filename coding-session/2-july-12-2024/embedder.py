@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from pydantic import BaseModel
 from typing import Any, Optional
+import streamlit as st
 
 from langchain_nvidia_ai_endpoints import NVIDIAEmbeddings
 
@@ -26,7 +27,7 @@ class NVIDIAEmbedders(Embedder):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.embedder = NVIDIAEmbeddings(model=self.name, model_type=self.type, nvidia_api_key="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")
+        self.embedder = NVIDIAEmbeddings(model=self.name, model_type=self.type, nvidia_api_key=st.secrets["NVIDIA_API_KEY"])
 
     def embed_query(self, text):
         return self.embedder.embed_query(text)

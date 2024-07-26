@@ -1,3 +1,5 @@
 volumes
 .env
 tmp
+.streamlit
+__pycache__

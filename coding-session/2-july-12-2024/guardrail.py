@@ -1,8 +1,9 @@
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_nvidia_ai_endpoints import ChatNVIDIA
+import streamlit as st
 
-llm = ChatNVIDIA(model="mistralai/mixtral-8x7b-instruct-v0.1", nvidia_api_key="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")
+llm = ChatNVIDIA(model="mistralai/mixtral-8x7b-instruct-v0.1", nvidia_api_key=st.secrets["NVIDIA_API_KEY"])
 
 def fact_check(evidence, query, response):
 
