@@ -1,0 +1,16 @@
+pymupdf
+gspread
+langchain
+langchain_community
+langchain_core
+langchain_nvidia_ai_endpoints
+pandas
+Pillow
+pydantic
+pymilvus
+python_pptx
+Requests
+streamlit
+streamlit_analytics
+streamlit_feedback
+transformers
