@@ -26,7 +26,7 @@ class NVIDIAEmbedders(Embedder):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.embedder = NVIDIAEmbeddings(model=self.name, model_type=self.type)
+        self.embedder = NVIDIAEmbeddings(model=self.name, model_type=self.type, nvidia_api_key="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")
 
     def embed_query(self, text):
         return self.embedder.embed_query(text)

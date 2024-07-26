@@ -6,7 +6,7 @@ from langchain_core.messages import HumanMessage
 
 class NvidiaLLM:
     def __init__(self, model_name):
-        self.llm = ChatNVIDIA(model=model_name)
+        self.llm = ChatNVIDIA(model=model_name, nvidia_api_key="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")
 
 
 def create_llm(model_name, model_type="NVIDIA"):
@@ -21,7 +21,7 @@ def create_llm(model_name, model_type="NVIDIA"):
 
 
 class LLMClient:
-    def __init__(self, model_name="mixtral_8x7b", model_type="NVIDIA"):
+    def __init__(self, model_name="mistralai/mixtral-8x7b-instruct-v0.1", model_type="NVIDIA"):
         self.llm = create_llm(model_name, model_type)
 
     def chat_with_prompt(self, system_prompt, prompt):
@@ -62,4 +62,5 @@ class LLMClient:
                 },
             )
         else:
-            return self.llm.invoke([message])
+            base64_with_mime_type = f"data:image/png;base64,{b64_string}"
+            return self.llm.invoke(f'What\'s in this image?\n<img src="{base64_with_mime_type}" />')

@@ -17,6 +17,7 @@ from vectordb import MilvusVectorClient
 from retriever import Retriever
 
 llm_client = LLMClient("mixtral_8x7b")
+os.environ["NVIDIA_API_KEY"] = "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"
 
 # Start the analytics service (using browser.usageStats)
 streamlit_analytics.start_tracking()
@@ -107,12 +108,12 @@ with st.sidebar:
 
     if uploaded_file and st.session_state.image_query == "":
         st.success("Image loaded for multimodal RAG Q&A.")
-        st.session_state.image_query = os.path.join("/tmp/", uploaded_file.name)
+        st.session_state.image_query = os.path.join("tmp", uploaded_file.name)
         with open(st.session_state.image_query, "wb") as f:
             f.write(uploaded_file.read())
 
         with st.spinner("Getting image description using NeVA"):
-            neva = LLMClient("neva_22b")
+            neva = LLMClient("nvidia/neva-22b")
             image = Image.open(st.session_state.image_query).convert("RGB")
             buffered = BytesIO()
             image.save(
@@ -151,7 +152,7 @@ if (
 # init the embedder
 if "query_embedder" not in st.session_state:
     st.session_state.query_embedder = NVIDIAEmbedders(
-        name="ai-embed-qa-4", type="query"
+        name="NV-Embed-QA", type="query"
     )
 # init the retriever
 if "retriever" not in st.session_state:

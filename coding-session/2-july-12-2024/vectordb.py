@@ -9,6 +9,7 @@ from pymilvus import (
     CollectionSchema,
     DataType,
     utility,
+    MilvusClient
 )
 
 
